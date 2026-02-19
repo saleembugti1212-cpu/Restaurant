@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Delicious Bites</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: 'Segoe UI', sans-serif;
+  scroll-behavior:smooth;
+}
+
+/* NAVBAR */
+header{
+  position:fixed;
+  width:100%;
+  padding:18px 50px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  transition:0.4s;
+  z-index:1000;
+}
+
+header.scrolled{
+  background:#111;
+  box-shadow:0 5px 15px rgba(0,0,0,0.3);
+}
+
+header h1{
+  color:white;
+}
+
+nav a{
+  color:white;
+  text-decoration:none;
+  margin-left:25px;
+  transition:0.3s;
+  font-weight:500;
+}
+
+nav a:hover{
+  color:orange;
+}
+
+/* HERO */
+.hero{
+  height:100vh;
+  background:linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+  url("https://images.unsplash.com/photo-1504674900247-0877df9cc836");
+  background-size:cover;
+  background-position:center;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  color:white;
+  padding:20px;
+}
+
+.hero h2{
+  font-size:55px;
+  animation:fadeDown 1s ease;
+}
+
+.hero p{
+  margin:20px 0;
+  font-size:22px;
+  animation:fadeUp 1.2s ease;
+}
+
+.hero button{
+  padding:14px 30px;
+  border:none;
+  background:orange;
+  color:white;
+  font-size:16px;
+  border-radius:30px;
+  cursor:pointer;
+  transition:0.3s;
+  animation:fadeUp 1.4s ease;
+}
+
+.hero button:hover{
+  background:#ff8c00;
+  transform:scale(1.05);
+}
+
+/* SECTIONS */
+section{
+  padding:100px 20px;
+  text-align:center;
+}
+
+#menu{
+  background:#f8f8f8;
+}
+
+.menu-container{
+  display:flex;
+  justify-content:center;
+  gap:25px;
+  margin-top:40px;
+  flex-wrap:wrap;
+}
+
+.menu-card{
+  background:white;
+  padding:30px;
+  width:260px;
+  border-radius:15px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.1);
+  transition:0.4s;
+  opacity:0;
+  transform:translateY(40px);
+}
+
+.menu-card.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.menu-card:hover{
+  transform:translateY(-10px);
+}
+
+footer{
+  background:#111;
+  color:white;
+  padding:25px;
+}
+
+/* ANIMATIONS */
+@keyframes fadeDown{
+  from{opacity:0; transform:translateY(-40px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+@keyframes fadeUp{
+  from{opacity:0; transform:translateY(40px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+@media(max-width:768px){
+  .hero h2{font-size:35px;}
+}
+</style>
+</head>
+
+<body>
+
+<header id="navbar">
+  <h1>Delicious Bites</h1>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#menu">Menu</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <div>
+    <h2>Fresh & Tasty Food</h2>
+    <p>Experience the best flavors in town</p>
+    <button onclick="orderNow()">Order Now</button>
+  </div>
+</section>
+
+<section id="menu">
+  <h2>Our Special Menu</h2>
+  <div class="menu-container">
+    <div class="menu-card"> <h3>Burger</h3> <p>Juicy grilled burger with cheese</p> </div>
+    <div class="menu-card"> <h3>Pizza</h3> <p>Cheesy delight with fresh toppings</p> </div>
+    <div class="menu-card"> <h3>Pasta</h3> <p>Italian pasta with rich sauce</p> </div>
+  </div>
+</section>
+
+<section id="about">
+  <h2>About Us</h2>
+  <p>We serve fresh and high-quality food made with love and passion.</p>
+</section>
+
+<section id="contact">
+  <h2>Contact Us</h2>
+  <p>Email: info@deliciousbites.com</p>
+  <p>Phone: +92 300 1234567</p>
+</section>
+
+<footer>
+  <p>© 2026 Delicious Bites. All Rights Reserved.</p>
+</footer>
+
+<script>
+function orderNow(){
+  alert("Your order request has been received!");
+}
+
+/* Navbar scroll effect */
+window.addEventListener("scroll", function(){
+  document.getElementById("navbar")
+  .classList.toggle("scrolled", window.scrollY > 50);
+});
+
+/* Scroll reveal for cards */
+window.addEventListener("scroll", function(){
+  document.querySelectorAll(".menu-card").forEach(card=>{
+    let position = card.getBoundingClientRect().top;
+    let screenHeight = window.innerHeight;
+    if(position < screenHeight - 100){
+      card.classList.add("show");
+    }
+  });
+});
+</script>
+
+</body>
+</html>
